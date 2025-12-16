@@ -1,0 +1,323 @@
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+}
+
+.header-top {
+  background: #fff;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 10px 0;
+}
+
+.header-main {
+  background: #fff;
+  padding: 28px 0;
+}
+
+.nav-category {
+  background: linear-gradient(90deg, #0d47a1 0%, #00bfa5 100%);
+}
+
+.nav-category-list {
+  display: flex;
+  gap: 15px;
+  padding: 12px 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.nav-category-link {
+  color: white;
+  font-weight: 500;
+  font-size: 0.94rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s ease;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.nav-category-link:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.logo-text {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.text-dark-gray {
+  color: #565656 !important;
+  transition: color 0.2s;
+}
+
+.text-dark-gray:hover {
+  color: #333 !important;
+}
+
+.btn-icon-round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 50%;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-icon-round:hover {
+  border-color: #00bfa5;
+  background: #f8fffe;
+  box-shadow: 0 0 0 5px rgba(0,191,165,0.15);
+}
+
+.btn-call {
+  background: #00bfa5;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 32px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+
+.btn-call:hover {
+  background: #008f7a;
+}
+
+.footer-bg {
+  background: linear-gradient(90deg, #0d47a1 0%, #00bfa5 100%);
+  color: white;
+  overflow: hidden;
+}
+
+.footer-bg a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.footer-bg a:hover {
+  opacity: 0.8;
+}
+
+.footer-bg img {
+  filter: brightness(0) invert(1);
+}
+
+.feedback-card .bg-white {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.feedback-card .form-control {
+  height: 56px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.feedback-card button {
+  height: 56px;
+  background: #00bfa5;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0,191,165,0.45);
+  transition: background 0.3s;
+}
+
+.feedback-card button:hover {
+  background: #009f8a;
+}
+
+.hover-opacity {
+  transition: opacity 0.2s;
+}
+
+.hover-opacity:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 1200px) {
+  .nav-category-link {
+    font-size: 0.89rem;
+    padding: 9px 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-category-list {
+    gap: 12px;
+  }
+  .nav-category-link {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-category-link {
+    font-size: 0.82rem;
+    padding: 7px 8px;
+  }
+}
+
+.advantages-block {
+  background: #fff;
+}
+
+.advantages-block img {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
+}
+
+.advantages-block .d-flex:hover img {
+  transform: translateY(-4px);
+}
+
+.advantages-block h6 {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.advantages-block p {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+/* На мобильных — иконка сверху */
+@media (max-width: 768px) {
+  .advantages-block .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  .advantages-block img {
+    margin-bottom: 12px;
+  }
+}
+.promotions-section .product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.promotions-section .product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+}
+
+.promotions-section .badge {
+  font-size: 0.75rem;
+}
+
+.promotions-section .btn-success {
+  background: #00bfa5;
+  border: none;
+}
+
+.promotions-section .btn-success:hover {
+  background: #009f8a;
+}
+
+/* Слайдер (используем простой owl-carousel или slick, или Bootstrap carousel) */
+.promotions-slider .row {
+  overflow: hidden;
+}
+
+/* Для настоящего слайдера подключи slick или swiper.js */
+
+.how-we-work {
+  background: #fff;
+}
+
+.step-icon img {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
+}
+
+.how-we-work .d-flex:hover .step-icon img {
+  transform: translateY(-4px);
+}
+
+.step-number {
+  font-size: 2rem;
+}
+
+.how-we-work h5 {
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.how-we-work p {
+  line-height: 1.5;
+}
+
+/* На мобильных — иконка сверху */
+@media (max-width: 768px) {
+  .how-we-work .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  .how-we-work .step-icon {
+    margin-bottom: 16px;
+  }
+}
+
+.reviews-section {
+  background: #f8fffe;
+}
+
+.reviews-section .shadow {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
+}
+
+.reviews-section .btn-success {
+  background: #00bfa5;
+  border: none;
+}
+
+.reviews-section .btn-success:hover {
+  background: #009f8a;
+}
+
+.reviews-section .text-warning {
+  letter-spacing: 2px;
+}
+
+@media (max-width: 992px) {
+  .reviews-section .sticky-top {
+    position: static !important;
+  }
+}
+
+.alphabet-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #828282;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.alphabet-letter:hover {
+  color: #2FD3AE;
+  border-color: #2FD3AE;
+}
+
+.alphabet-letter.active {
+  color: #2FD3AE;
+  background: #F6FBFA;
+  border-color: #F6FBFA;
+  border-radius: 5px;
+}
