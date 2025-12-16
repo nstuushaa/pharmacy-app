@@ -7,12 +7,12 @@
           <img src="{{ asset('asset/img/near_me.svg') }}" alt="" width="18" height="18">
           <div class="dropdown">
             <a class="text-dark text-decoration-none dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
-              Москва и область
+              {{ $cities->first()->name ?? 'Город'}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Санкт-Петербург</a></li>
-              <li><a class="dropdown-item" href="#">Екатеринбург</a></li>
-              <li><a class="dropdown-item" href="#">Новосибирск</a></li>
+                 @foreach($cities as $city)
+                    <li><a class="dropdown-item" href="#">{{ $city->name }}</a></li>
+                @endforeach         
             </ul>
           </div>
         </div>
