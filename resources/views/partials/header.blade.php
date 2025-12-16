@@ -23,13 +23,13 @@
         </a>
       </div>
       <div class="col-md-6 text-md-end d-flex justify-content-md-end align-items-center gap-3 gap-md-4 flex-wrap">
-        <a href="#" class="text-muted text-decoration-none d-flex align-items-center gap-2">
-          <img src="{{ asset('asset/img/favorite_border.svg') }}" alt="" width="18" height="18">
-          <span class="d-none d-sm-inline">Избранное</span>
+        <a href="{{ route('favourite') }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
+            <img src="{{ asset('asset/img/favorite_border.svg') }}" alt="" width="18" height="18">
+            <span class="d-none d-sm-inline">Избранное</span>
         </a>
-        <a href="#" class="text-muted text-decoration-none d-flex align-items-center gap-2">
-          <img src="{{ asset('asset/img/person.svg') }}" alt="" width="18" height="18">
-          <span class="d-none d-sm-inline">Личный кабинет</span>
+        <a href="{{ route('profile') }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
+            <img src="{{ asset('asset/img/person.svg') }}" alt="" width="18" height="18">
+            <span class="d-none d-sm-inline">Личный кабинет</span>
         </a>
       </div>
     </div>
@@ -87,7 +87,7 @@
                     style="height: 56px; background: #00bfa5; border: none; box-shadow: 0 8px 20px rgba(0,191,165,0.45)">
               ЗАКАЗАТЬ ЗВОНОК
             </button>
-          <a href="#" class="btn-icon-round position-relative">
+          <a href="{{ route('cart') }}" class="btn-icon-round position-relative">
             <img src="{{ asset('asset/img/shopping_cart.svg') }}" alt="" width="22">
           </a>
         </div>
