@@ -1,0 +1,74 @@
+.city-selector {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 40px 15px;
+}
+
+.city-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 30px;
+}
+
+.search-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.search-input {
+    height: 50px;
+    border-radius: 30px;
+    border: 1px solid #E0E0E0;
+    padding-left: 50px;
+    font-size: 12px;
+    color: #828282;
+}
+
+.search-input::placeholder {
+    color: #828282;
+    font-size: 12px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    fill: #E0E0E0;
+}
+
+.city-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.city-item {
+    cursor: pointer;
+    line-height: 30px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    transition: color 0.2s;
+}
+
+.city-checked {
+    color: #2FD3AE;
+    font-weight: 700;
+}
+
+.city-unchecked {
+    color: #696A6B;
+    font-weight: 400;
+}
+
+.city-item:hover {
+    color: #2FD3AE;
+}
