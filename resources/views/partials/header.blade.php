@@ -100,15 +100,16 @@
 <nav class="nav-category py-3">
   <div class="container">
     <ul class="nav-category-list">
-      <li><a class="nav-category-link" href="#"><img src="{{ asset('asset/img/pills 1.svg') }}" alt="" class="me-2">Лекарства</a></li>
-      <li><a class="nav-category-link" href="#"><img src="{{ asset('asset/img/vitamins 1.svg') }}" alt="" class="me-2">Витамины и БАД</a></li>
-      <li><a class="nav-category-link" href="{{ asset('asset/img/skin-care 1.svg') }}" alt="" class="me-2">Красота</a></li>
-      <li><a class="nav-category-link" href="{{ asset('asset/img/washing-hands 1.svg') }}" alt="" class="me-2">Гигиена</a></li>
-      <li><a class="nav-category-link" href="{{ asset('asset/img/eye 1.svg') }}" alt="" class="me-2">Линзы</a></li>
-      <li><a class="nav-category-link" href="{{ asset('asset/img/baby-boy 1.svg') }}" alt="" class="me-2">Мать и дитя</a></li>
-      <li><a class="nav-category-link" href="{{ asset('asset/img/first-aid-kit 1.svg') }}" alt="" class="me-2">Медтовары</a></li>
-      <li><a class="nav-category-link" href="#"><img src="{{ asset('asset/img/dog 1.svg') }}" alt="" class="me-2">Зоотовары</a></li>
-      <li><a class="nav-category-link" href="#"><img src="{{ asset('asset/img/smartwatch 1.svg') }}" alt="" class="me-2">Медтехника</a></li>
+      @forelse($catalogs as $catalog)
+        <li>
+          <a class="nav-category-link" href="{{ route('catalog.show', $catalog->slug) }}">
+            <img src="{{ asset('asset/img/' . $catalog->icon) }}" alt="{{ $catalog->name }}" class="me-2">
+            {{ $catalog->name }}
+          </a>
+        </li>
+      @empty
+        <li>Категории ещё не добавлены</li>
+      @endforelse
     </ul>
   </div>
 </nav>
