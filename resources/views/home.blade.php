@@ -75,5 +75,66 @@
             </div>
             @endif
         </div>
+        <!-- Блок преимуществ — иконки слева от текста -->
+      <div class="advantages-block my-5 py-5 border-top border-bottom bg-white">
+        <div class="row g-4 g-xl-5 justify-content-center">
+
+          <!-- 1. Ассортимент -->
+          <div class="col-12 col-md-6 col-lg">
+            <div class="d-flex align-items-center gap-4">
+              <img src="{{ asset('asset/img/shipping.svg') }}" alt="" width="56" height="56" class="flex-shrink-0">
+              <div>
+                <h6 class="fw-bold mb-1">Ассортимент</h6>
+                <p class="small text-muted mb-0">Оборудование, мебель, посуда и инвентарь</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Быстрая доставка -->
+          <div class="col-12 col-md-6 col-lg">
+            <div class="d-flex align-items-center gap-4">
+              <img src="{{ asset('asset/img/online.svg') }}" alt="" width="56" height="56" class="flex-shrink-0">
+              <div>
+                <h6 class="fw-bold mb-1">Быстрая доставка</h6>
+                <p class="small text-muted mb-0">В любую точку России быстро</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Гарантия -->
+          <div class="col-12 col-md-6 col-lg">
+            <div class="d-flex align-items-center gap-4">
+              <img src="{{ asset('asset/img/ui.svg') }}" alt="" width="56" height="56" class="flex-shrink-0">
+              <div>
+                <h6 class="fw-bold mb-1">Гарантия</h6>
+                <p class="small text-muted mb-0">Вся продукция сертифицирована</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Низкие цены -->
+          <div class="col-12 col-md-6 col-lg">
+            <div class="d-flex align-items-center gap-4">
+              <img src="{{ asset('asset/img/saved.svg') }}" alt="" width="56" height="56" class="flex-shrink-0">
+              <div>
+                <h6 class="fw-bold mb-1">Низкие цены</h6>
+                <p class="small text-muted mb-0">Мы стараемся держать самые низкие цены</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Отзывы -->
+          <div class="col-12 col-md-6 col-lg">
+            <div class="d-flex align-items-center gap-4">
+              <img src="{{ asset('asset/img/positive-review 1.svg') }}" alt="" width="56" height="56" class="flex-shrink-0">
+              <div>
+                <h6 class="fw-bold mb-1">4349 отзывов</h6>
+                <p class="small text-muted mb-0">Мы стараемся держать самые низкие цены</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 @endsection
