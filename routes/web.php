@@ -14,5 +14,4 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/favourite', [FavouriteController::class, 'index'])->name('favourite');
 Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
-Route::get('/delivery-info', [DeliveryPageController::class, 'index'])->name('delivery-info');
 
