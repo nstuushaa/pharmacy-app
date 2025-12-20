@@ -321,3 +321,16 @@ body {
   border-color: #F6FBFA;
   border-radius: 5px;
 }
+#scroll-left, #scroll-right {
+    background-color: rgba(255,255,255,0.3);
+    border: none;
+    width: 30px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#scroll-left:hover, #scroll-right:hover {
+    background-color: rgba(255,255,255,1);
+}
