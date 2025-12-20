@@ -334,3 +334,33 @@ body {
 #scroll-left:hover, #scroll-right:hover {
     background-color: rgba(255,255,255,1);
 }
+.catalog-scroll {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* скрываем полосу в Firefox */
+    -ms-overflow-style: none; /* скрываем в IE/Edge */
+}
+
+.nav-category-list {
+  display: flex;
+  gap: 16px;
+  padding: 12px 40px; /* отступы под кнопки */
+  margin: 0;
+  list-style: none;
+  flex-wrap: nowrap;
+  min-width: fit-content; /* ← важно: список должен быть шире контейнера */
+}
+
+.nav-category-list li {
+    flex: 0 0 auto; /* ключевая строка */
+}
+#scroll-left:disabled, #scroll-right:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+.catalog-scroll::-webkit-scrollbar {
+    display: none; /* скрываем полосу в Chrome/Safari */
+}

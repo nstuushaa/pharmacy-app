@@ -105,18 +105,23 @@
   <div class="container position-relative">
 
     <!-- Кнопка влево -->
-    <button class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y shadow-sm"
-            id="scroll-left" style="z-index: 10;">
+    <button type="button"
+            class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y shadow-sm"
+            id="scroll-left"
+            style="z-index: 10;">
       &#10094;
     </button>
 
-    <!-- Контейнер с прокруткой -->
-    <div class="overflow-x-auto" id="catalog-scroll" style="scroll-behavior: smooth;">
-      <ul class="nav-category-list d-flex flex-nowrap gap-3 mb-0">
+    <!-- Контейнер прокрутки -->
+    <div id="catalog-scroll" class="catalog-scroll">
+      <ul class="nav-category-list">
         @forelse($catalogs as $catalog)
-          <li class="flex-shrink-0">
+          <li>
             <a class="nav-category-link d-flex align-items-center"
-               href="{{ route('catalog.show', ['city' => request()->route('city')->slug,'slug' => $catalog->slug]) }}">
+               href="{{ route('catalog.show', [
+                   'city' => request()->route('city')->slug,
+                   'slug' => $catalog->slug
+               ]) }}">
               <img src="{{ asset('asset/img/' . $catalog->icon) }}"
                    alt="{{ $catalog->name }}" class="me-2" width="24" height="24">
               {{ $catalog->name }}
@@ -129,26 +134,34 @@
     </div>
 
     <!-- Кнопка вправо -->
-    <button class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y shadow-sm"
-            id="scroll-right" style="z-index: 10;">
+    <button type="button"
+            class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y shadow-sm"
+            id="scroll-right"
+            style="z-index: 10;">
       &#10095;
     </button>
 
   </div>
 </nav>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const scrollContainer = document.getElementById('catalog-scroll');
     const btnLeft = document.getElementById('scroll-left');
     const btnRight = document.getElementById('scroll-right');
-    const scrollAmount = 200; // сколько пикселей прокручивать
+
+    if (!scrollContainer || !btnLeft || !btnRight) return;
+
+    // Получаем первый элемент списка для расчёта шага
+    const firstItem = scrollContainer.querySelector('.nav-category-list li');
+    const step = firstItem ? firstItem.getBoundingClientRect().width + 16 : 300; // + gap
 
     btnLeft.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        scrollContainer.scrollBy({ left: -step, behavior: 'smooth' });
     });
 
     btnRight.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        scrollContainer.scrollBy({ left: step, behavior: 'smooth' });
     });
 });
 </script>
