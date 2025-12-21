@@ -160,10 +160,10 @@
                                 <span class="badge text-white position-absolute top-0 start-0 m-2" style="background-color: #00bfa5;">Товар дня</span>
                             @endif
 
-                            <img src="{{ asset('assets/img/' . ($product->image ?? 'default.svg')) }}" 
-                                 alt="{{ $product->name }}" 
-                                 class="img-fluid mb-3 mx-auto d-block" 
-                                 style="height: 120px; object-fit: contain;">
+                            <img src="{{ $product->primaryImage ? $product->primaryImage->image_url : asset('assets/img/default.svg') }}"
+                                alt="{{ $product->name }}"
+                                class="img-fluid mb-3 mx-auto d-block"
+                                style="height: 120px; object-fit: contain;">
 
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 @if($product->is_available)

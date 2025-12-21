@@ -28,4 +28,8 @@ class Product extends Model
     {
         return $this->reviews()->avg('rating') ?: 0;
     }
+    public function primaryImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('is_primary', true);
+    }
 }

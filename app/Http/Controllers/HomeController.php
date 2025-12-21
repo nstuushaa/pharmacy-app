@@ -20,6 +20,7 @@ class HomeController extends Controller
         // Получаем товары для акции (например, is_hit = true)
         $promoProducts = Product::with([
             'brand',
+            'primaryImage', // ✅ Загружаем главное изображение
             'stocks' => fn($query) => $query->whereHas('branch', fn($b) => $b->where('city_id', $cityId))
         ])
         ->where('is_deal_of_day', true)
