@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index($city) // ✅ Принимаем $city из маршрута
     {
+        // Устанавливаем ID города в сессию
+        session(['city_id' => $city->id]);
+
         // Баннеры (оставляем как есть)
         $leftBanner = PromoBlock::where('slug', 'main-left')->first();
         $rightBanner = PromoBlock::where('slug', 'main-right')->first();
 
         // === НОВОЕ: Акция месяца ===
-        $cityId = session('city_id', 1); // или City::first()?->id
+        $cityId = session('city_id', 1); // теперь будет правильный ID
 
         // Получаем товары для акции (например, is_hit = true)
         $promoProducts = Product::with([
@@ -28,8 +31,11 @@ class HomeController extends Controller
         ->get();
 
         // Обогащаем каждый товар данными для отображения
-        $promoProducts->each(function ($product) {
-            $availableStock = $product->stocks->firstWhere('quantity', '>', 0);
+        $promoProducts->each(function ($product) use ($cityId) { // ✅ Передаём $cityId
+            $availableStock = $product->stocks
+                ->firstWhere(function ($stock) use ($cityId) {
+                    return $stock->branch->city_id == $cityId && $stock->quantity > 0;
+                });
             
             $product->is_available = $availableStock !== null;
             $product->display_price = $availableStock?->price ?? 0;
@@ -42,7 +48,7 @@ class HomeController extends Controller
         return view('home', compact(
             'leftBanner', 
             'rightBanner', 
-            'promoProducts' // ← передаём акционные товары
+            'promoProducts'
         ));
     }
 }
