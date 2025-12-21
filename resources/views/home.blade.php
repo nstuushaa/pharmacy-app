@@ -136,5 +136,84 @@
 
         </div>
       </div>
+      <section class="promotions-section py-3 mb-5">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="fw-bold mb-0">Акция месяца</h2>
+            <div class="d-flex gap-3">
+                <button class="btn rounded-circle prev-slide" style="width: 40px; height: 40px; background-color: #00bfa5;">
+                    <i class="fas fa-chevron-left" style="color: white;"></i>
+                </button>
+                <button class="btn rounded-circle next-slide" style="width: 40px; height: 40px; background-color: #00bfa5;">
+                    <i class="fas fa-chevron-right" style="color: white;"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="promotions-slider">
+            <div class="row g-4">
+                @foreach($promoProducts as $product)
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2-4">
+                    <div class="card product-card border-0 shadow-sm">
+                        <div class="card-body p-3">
+                            @if($product->is_deal_of_day)
+                                <span class="badge text-white position-absolute top-0 start-0 m-2" style="background-color: #00bfa5;">Товар дня</span>
+                            @endif
+
+                            <img src="{{ asset('assets/img/' . ($product->image ?? 'default.svg')) }}" 
+                                 alt="{{ $product->name }}" 
+                                 class="img-fluid mb-3 mx-auto d-block" 
+                                 style="height: 120px; object-fit: contain;">
+
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                @if($product->is_available)
+                                    <div class="small" style="color: #00bfa5; font-weight: bold;">Есть в наличии</div>
+                                @else
+                                    <div class="small text-danger" style="font-weight: bold;">Нет в наличии</div>
+                                @endif
+
+                                <div class="text-warning small">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= round($product->rating))
+                                            ★
+                                        @else
+                                            ☆
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>
+
+                            <h6 class="card-title mb-3 text-start">{{ $product->name }}</h6>
+
+                            <ul class="list-unstyled small text-muted mb-3 text-start">
+                                <li>• Бренд: {{ $product->brand->name ?? '–' }}</li>
+                                <li>• Количество в упаковке: {{ $product->package_qty }} шт</li>
+                                <li>• Код товара: {{ $product->code }}</li>
+                            </ul>
+
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="text-start">
+                                    @if($product->display_discount > 0)
+                                        <div class="fw-bold fs-5">{{ number_format($product->discounted_price, 0, ',', ' ') }} ₽</div>
+                                        <del class="fw-bold small" style="color: #E74C38;">
+                                            {{ number_format($product->display_price, 0, ',', ' ') }} ₽
+                                        </del>
+                                    @else
+                                        <div class="fw-bold fs-5">{{ number_format($product->display_price, 0, ',', ' ') }} ₽</div>
+                                    @endif
+                                </div>
+                                <button class="btn btn-success rounded-circle p-3 shadow flex-shrink-0">
+                                    <i class="fas fa-shopping-cart text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
+</section>
+    </div>
+
 @endsection
