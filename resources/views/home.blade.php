@@ -214,6 +214,71 @@
         </div>
     </div>
 </section>
+<section class="how-we-work py-5 border-top border-bottom">
+    <div class="container">
+      <h2 class="fw-bold mb-5">Как мы работаем?</h2>
+      
+      <div class="row g-4 g-xl-5 justify-content-center">
+        
+        <!-- Шаг 1 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-start gap-4">
+            <div class="step-icon flex-shrink-0">
+              <img src="{{ asset('asset/img/checklist 1.svg') }}" alt="" width="56" height="56">
+            </div>
+            <div>
+              <div class="step-number fw-bold mb-2" style="color: #FF7A00;">1</div>
+              <h5 class="fw-bold mb-2">Выберите товар</h5>
+              <p class="text-muted small mb-0">Воспользуйтесь поиском, чтобы найти необходимый товар</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Шаг 2 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-start gap-4">
+            <div class="step-icon flex-shrink-0">
+              <img src="{{ asset('asset/img/building 1.svg') }}" alt="" width="56" height="56">
+            </div>
+            <div>
+              <div class="step-number fw-bold mb-2" style="color: #00BFA5;">2</div>
+              <h5 class="fw-bold mb-2">Выберите аптеку</h5>
+              <p class="text-muted small mb-0">Выберите аптеку, из которой вам будет удобно забрать заказ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Шаг 3 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-start gap-4">
+            <div class="step-icon flex-shrink-0">
+              <img src="{{ asset('asset/img/pos-terminal 1.svg') }}" alt="" width="56" height="56">
+            </div>
+            <div>
+              <div class="step-number fw-bold mb-2" style="color: #2F80ED;">3</div>
+              <h5 class="fw-bold mb-2">Оформите заказ</h5>
+              <p class="text-muted small mb-0">Оформите заказ и заберите его в выбранной аптеке</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Шаг 4 -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-start gap-4">
+            <div class="step-icon flex-shrink-0">
+              <img src="{{ asset('asset/img/shopping-bags 1.svg') }}" alt="" width="56" height="56">
+            </div>
+            <div>
+              <div class="step-number fw-bold mb-2" style="color: #E74C3C;">4</div>
+              <h5 class="fw-bold mb-2">Получите заказ</h5>
+              <p class="text-muted small mb-0">Заберите заказ в ближайшей Вам аптеке</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
     </div>
 
 @endsection
