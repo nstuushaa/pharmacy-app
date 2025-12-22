@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container">
-        <h1>Главная страница</h1>
 
         <div class="row g-4">
             {{-- Левый баннер --}}
