@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use App\Models\PromoBlock;
 use App\Models\Product;
 use App\Models\ReviewPharmacy;
@@ -54,13 +55,16 @@ class HomeController extends Controller
         $averageRating = ReviewPharmacy::approved()->avg('rating') ?: 0;
         $totalReviews = ReviewPharmacy::approved()->count();
 
+        $partners = Partner::all();
+
         return view('home', compact(
         'leftBanner', 
         'rightBanner', 
         'promoProducts',
         'approvedReviews',  
         'averageRating',    
-        'totalReviews'      
+        'totalReviews',
+        'partners'      
         ));
     }
 }

@@ -346,6 +346,47 @@
     </div>
   </div>
 </section>
+<!-- Секция "Наши партнёры" — динамически из БД -->
+<section class="partners-section py-5 bg-white">
+    <div class="container">
+        <h2 class="fw-bold mb-5">Наши партнёры</h2>
+
+        @if($partners->count() > 0)
+            <div class="row g-5 justify-content-center">
+                @php
+                    // Разбиваем партнёров на 2 строки по 6 элементов
+                    $chunks = $partners->chunk(6);
+                @endphp
+
+                @foreach($chunks as $chunk)
+                    <div class="col-12">
+                        <div class="row g-4 g-xl-5 justify-content-center align-items-center">
+                            @foreach($chunk as $partner)
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center">
+                                    @if($partner->url)
+                                        <a href="{{ $partner->url }}" target="_blank" rel="noopener">
+                                            <img src="{{ asset('asset/img/' . $partner->logo) }}" 
+                                                 alt="{{ $partner->name }}" 
+                                                 class="img-fluid" 
+                                                 style="max-height: 60px; opacity: 0.6;">
+                                        </a>
+                                    @else
+                                        <img src="{{ asset('asset/img/' . $partner->logo) }}" 
+                                             alt="{{ $partner->name }}" 
+                                             class="img-fluid" 
+                                             style="max-height: 60px; opacity: 0.6;">
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p class="text-center text-muted">Партнёры скоро появятся</p>
+        @endif
+    </div>
+</section>
     </div>
 
 @endsection
