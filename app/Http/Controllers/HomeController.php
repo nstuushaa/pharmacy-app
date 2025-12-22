@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PromoBlock;
 use App\Models\Product;
+use App\Models\ReviewPharmacy;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -45,10 +46,21 @@ class HomeController extends Controller
                 : 0;
         });
 
+        $approvedReviews = ReviewPharmacy::approved()
+        ->latest()
+        ->limit(3)
+        ->get();
+
+        $averageRating = ReviewPharmacy::approved()->avg('rating') ?: 0;
+        $totalReviews = ReviewPharmacy::approved()->count();
+
         return view('home', compact(
-            'leftBanner', 
-            'rightBanner', 
-            'promoProducts'
+        'leftBanner', 
+        'rightBanner', 
+        'promoProducts',
+        'approvedReviews',  
+        'averageRating',    
+        'totalReviews'      
         ));
     }
 }

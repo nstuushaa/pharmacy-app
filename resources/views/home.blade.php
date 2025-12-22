@@ -279,6 +279,73 @@
       </div>
     </div>
   </section>
+  <section class="reviews-section py-5">
+  <div class="container" style="background-color: #F6FBFA;">
+    <div class="row g-5">
+      
+      <!-- Левая часть — общая оценка -->
+      <div class="col-lg-4">
+        <div class="bg-white rounded-4 shadow p-5 text-center mx-auto" style="max-width: 380px;">
+          <div class="d-flex flex-column align-items-center gap-3 mb-4">
+            <h3 class="fw-bold mb-0">Средняя оценка аптеки</h3>
+            <div>
+              <div class="display-3 fw-bold mb-0">
+                {{ number_format($averageRating, 1) }}
+              </div>
+              <div class="text-warning fs-4">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= round($averageRating))
+                        ★
+                    @else
+                        ☆
+                    @endif
+                @endfor
+              </div>
+            </div>
+          </div>
+          
+          <p class="text-muted mb-4 small text-center">
+            Общий рейтинг на основе {{ $totalReviews }}<br>отзывов наших покупателей
+          </p>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-success rounded-pill px-5 py-3 fw-bold">
+              ОСТАВИТЬ ОТЗЫВ
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая часть — отзывы -->
+      <div class="col-lg-8">
+        @foreach($approvedReviews as $review)
+        <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="fw-bold">
+                {{ $review->name }}, Москва, {{ $review->created_at ? $review->created_at->format('d F') : 'Недавно' }}
+            </div>
+            <div class="text-warning">
+                @for ($i = 1; $i <= 5; $i++)
+                    {{ $i <= $review->rating ? '★' : '☆' }}
+                @endfor
+            </div>
+          </div>
+          <p class="mb-0">
+            {{ $review->comment }}
+          </p>
+        </div>
+        @endforeach
+
+        @if($totalReviews > 3)
+        <div class="text-center">
+          <a href="#" class="fw-bold text-decoration-none" style="color: #00BFA5;">
+            > ВСЕ {{ $totalReviews }} ОТЗЫВОВ
+          </a>
+        </div>
+        @endif
+      </div>
+    </div>
+  </div>
+</section>
     </div>
 
 @endsection
