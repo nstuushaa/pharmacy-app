@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -36,6 +36,8 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect('/profile');
+        // 🔁 Перенаправляем на главную страницу города
+        $citySlug = session('city_slug', 'moskva'); // или любой город по умолчанию
+        return redirect("/{$citySlug}");
     }
 }

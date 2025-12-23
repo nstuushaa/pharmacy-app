@@ -5,28 +5,25 @@
       <div class="col-md-6 d-flex align-items-center flex-wrap gap-3 gap-md-4">
         <div class="d-flex align-items-center gap-2">
           <img src="{{ asset('asset/img/near_me.svg') }}" alt="" width="18" height="18">
-          @if(request()->route('city'))
-            @php
-                $currentCity = \App\Models\City::where('slug', request()->route('city'))->first();
-            @endphp
-            <div class="dropdown">
-              <a class="text-dark text-decoration-none dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
-                {{ $currentCity?->name ?? 'Город' }}
-              </a>
-              <ul class="dropdown-menu">
-                @foreach($cities as $city)
-                  <li>
-                    <a class="dropdown-item" href="{{ url($city->slug) }}">
+          @if(isset($city))
+              <div class="dropdown">
+                  <a class="text-dark text-decoration-none dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
                       {{ $city->name }}
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
+                  </a>
+                  <ul class="dropdown-menu">
+                      @foreach($cities as $c)
+                          <li>
+                              <a class="dropdown-item" href="{{ url($c->slug) }}">
+                                  {{ $c->name }}
+                              </a>
+                          </li>
+                      @endforeach
+                  </ul>
+              </div>
           @else
-            <span>Город</span>
+              <span>Город</span>
           @endif
-        </div>
+      </div>
         <a href="#" class="text-muted text-decoration-none d-flex align-items-center gap-2">
           <img src="{{ asset('asset/img/menu.svg') }}" alt="" width="18" height="18">
           <span class="d-none d-sm-inline">Служебные страницы</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Partner;
 use App\Models\PromoBlock;
 use App\Models\Product;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($city) // ✅ Принимаем $city из маршрута
+    public function index(City $city) // ✅ Принимаем $city из маршрута
     {
         // Устанавливаем ID города в сессию
         session(['city_id' => $city->id]);
@@ -25,19 +26,16 @@ class HomeController extends Controller
         // Получаем товары для акции (например, is_hit = true)
         $promoProducts = Product::with([
             'brand',
-            'primaryImage', // ✅ Загружаем главное изображение
+            'primaryImage',
             'stocks' => fn($query) => $query->whereHas('branch', fn($b) => $b->where('city_id', $cityId))
         ])
         ->where('is_deal_of_day', true)
         ->limit(8)
         ->get();
 
-        // Обогащаем каждый товар данными для отображения
-        $promoProducts->each(function ($product) use ($cityId) { // ✅ Передаём $cityId
+        $promoProducts->each(function ($product) use ($cityId) {
             $availableStock = $product->stocks
-                ->firstWhere(function ($stock) use ($cityId) {
-                    return $stock->branch->city_id == $cityId && $stock->quantity > 0;
-                });
+                ->firstWhere(fn($stock) => $stock->branch->city_id == $cityId && $stock->quantity > 0);
             
             $product->is_available = $availableStock !== null;
             $product->display_price = $availableStock?->price ?? 0;
@@ -57,14 +55,18 @@ class HomeController extends Controller
 
         $partners = Partner::all();
 
+        $cities = City::all(); // не забудьте получить список городов
+
         return view('home', compact(
-        'leftBanner', 
-        'rightBanner', 
-        'promoProducts',
-        'approvedReviews',  
-        'averageRating',    
-        'totalReviews',
-        'partners'      
+            'city', // ← добавьте это, чтобы использовать в header.blade.php
+            'cities',
+            'leftBanner', 
+            'rightBanner', 
+            'promoProducts',
+            'approvedReviews',  
+            'averageRating',    
+            'totalReviews',
+            'partners'
         ));
     }
 }
