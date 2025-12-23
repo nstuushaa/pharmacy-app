@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лекарственные средства</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f8f9fa; }
+        .sidebar {
+            background: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+            border-right: 1px solid #eee;
+            position: sticky;
+            top: 0;
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-list li {
+            padding: 8px 0;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .category-list li:hover {
+            color: #000;
+        }
+        .btn-show-all {
+            background: #2FD3AE;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-show-all:hover {
+            background: #28b89a;
+        }
+        .form-check-input:checked {
+            background-color: #2FD3AE;
+            border-color: #2FD3AE;
+        }
+        .btn-apply {
+            background: #2FD3AE;
+            color: white;
+            border: none;
+        }
+        .btn-reset {
+            background: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+        .product-card {
+            transition: box-shadow 0.3s;
+            border: none !important;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .btn-add {
+            background: #2FD3AE;
+            color: white;
+            border: none;
+        }
+        .btn-add:hover {
+            background: #28b89a;
+        }
+        .rating { color: #ffc107; }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <h2 class="mb-4 fw-bold">Лекарственные средства</h2>
+        <!-- Левая боковая панель -->
+        <div class="col-lg-3 sidebar">
+            <h5 class="mb-4 fw-bold">КАТЕГОРИИ</h5>
+            <ul class="category-list mb-4">
+                <li>Акушерство, гинекология</li>
+                <li>Аллергия</li>
+                <li>Анестезия, реанимация</li>
+                <li>Антибиотики</li>
+                <li>Болезни крови</li>
+                <li>Боль, температура</li>
+                <li>Геморрой</li>
+                <li>Глаза</li>
+                <li>Глисты, вши, чесотка</li>
+                <li>Гомеопатия</li>
+                <li>Диабет</li>
+                <li>Диагностические средства</li>
+                <li>Дыхательная система</li>
+                <li>Желудок, кишечник, печень</li>
+            </ul>
+
+            <button class="btn btn-show-all mb-5">
+                Показать все категории
+            </button>
+
+            <h5 class="mb-4 fw-bold">ФИЛЬТР</h5>
+
+            <!-- Цена -->
+            <div class="mb-4">
+                <h6 class="mb-3">Цена</h6>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <input type="number" id="price-min" class="form-control form-control-sm" value="2550">
+                    <span>—</span>
+                    <input type="number" id="price-max" class="form-control form-control-sm" value="865878">
+                </div>
+                <input type="range" class="form-range" id="price-range-min" min="0" max="900000" value="2550">
+                <input type="range" class="form-range" id="price-range-max" min="0" max="900000" value="865878">
+            </div>
+
+            <!-- Страна -->
+            <div class="mb-4">
+                <h6 class="mb-3">Страна</h6>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="belarus" checked>
+                    <label class="form-check-label" for="belarus">Беларусь</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="germany">
+                    <label class="form-check-label" for="germany">Германия</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="greece">
+                    <label class="form-check-label" for="greece">Греция</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="india">
+                    <label class="form-check-label" for="india">Индия</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="italy">
+                    <label class="form-check-label" for="italy">Италия</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="china">
+                    <label class="form-check-label" for="china">Китай</label>
+                </div>
+            </div>
+
+            <!-- Возрастные ограничения -->
+            <div class="mb-4">
+                <h6 class="mb-3">Возрастные ограничения</h6>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Поиск...">
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="adults">
+                    <label class="form-check-label" for="adults">Для взрослых</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="children">
+                    <label class="form-check-label" for="children">Для детей</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="elderly">
+                    <label class="form-check-label" for="elderly">Для пожилых людей</label>
+                </div>
+            </div>
+
+            <!-- Наличие -->
+            <div class="mb-5">
+                <h6 class="mb-3">Наличие</h6>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="availability" id="in-stock" checked>
+                    <label class="form-check-label" for="in-stock">В наличии</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="availability" id="on-order">
+                    <label class="form-check-label" for="on-order">Под заказ</label>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-apply py-2">Показать</button>
+                <button class="btn btn-reset py-2">Сбросить</button>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="col-lg-9 p-4 bg-white">
+            <div class="mb-4">
+                <h5 class="mb-3">Каталог</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-secondary">Наружние средства</button>
+                    <button class="btn btn-outline-secondary">Таблетки и капсулы</button>
+                    <button class="btn btn-outline-secondary">Сиропы, капли, суспензии</button>
+                    <button class="btn btn-outline-secondary">Наружние средства</button>
+                    <!-- Добавьте другие -->
+                </div>
+            </div>
+            <!-- Популярные бренды -->
+            <div class="mb-4">
+                <h5 class="mb-3">Популярные бренды</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-secondary">Bayer</button>
+                    <button class="btn btn-outline-secondary">Abbott</button>
+                    <button class="btn btn-outline-secondary">Sanofi</button>
+                    <button class="btn btn-outline-secondary">Pfizer</button>
+                    <!-- Добавьте другие -->
+                </div>
+            </div>
+
+            <!-- Сортировка -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <span>Сортировать:</span>
+                <select class="form-select w-auto">
+                    <option>По цене</option>
+                    <option>По популярности</option>
+                    <option>По названию</option>
+                </select>
+            </div>
+
+            <!-- Сетка товаров -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Пример товара -->
+                <div class="col">
+                    <div class="card product-card h-100 shadow-sm">
+                        <img src="https://m.media-amazon.com/images/I/71Nc0M1hC6L._AC_UF1000,1000_QL80_.jpg" class="card-img-top p-4" alt="Femibion" style="object-fit: contain; height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <div class="rating mb-2 fs-5">★★★★★</div>
+                            <h6 class="card-title">Femibion</h6>
+                            <p class="text-muted small">Белосн таблетки покрыт. плен. об. 3 мг, 30 шт.</p>
+                            <ul class="small text-muted list-unstyled">
+                                <li>Бренд: Linea</li>
+                                <li>Количество в упаковке: 10 шт</li>
+                                <li>Код товара: 153249</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <p class="fw-bold fs-4 text-danger mb-2">41 108 руб.</p>
+                                <button class="btn btn-add w-100"><i class="fas fa-cart-plus me-2"></i>В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Повторите для других товаров -->
+                <div class="col">
+                    <div class="card product-card h-100 shadow-sm">
+                        <img src="https://usaapteka.com/cdn/shop/files/detralex-500-mg-30-tablets-739755.webp?v=1732868803" class="card-img-top p-4" alt="Детралекс" style="object-fit: contain; height: 200px;">
+                        <div class="card-body d-flex flex-column">
+                            <div class="rating mb-2 fs-5">★★★★★</div>
+                            <h6 class="card-title">Детралекс</h6>
+                            <p class="text-muted small">Таблетки 500 мг, 30 шт.</p>
+                            <div class="mt-auto">
+                                <p class="fw-bold fs-4 text-danger mb-2">41 108 руб.</p>
+                                <button class="btn btn-add w-100"><i class="fas fa-cart-plus me-2"></i>В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Добавьте остальные товары аналогично -->
+            </div>
+
+            <!-- Пагинация -->
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item"><a class="page-link" href="#">32</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Простая синхронизация цены (можно улучшить с двойным слайдером позже)
+    document.getElementById('price-min').addEventListener('input', function() {
+        document.getElementById('price-range-min').value = this.value;
+    });
+    document.getElementById('price-max').addEventListener('input', function() {
+        document.getElementById('price-range-max').value = this.value;
+    });
+    document.getElementById('price-range-min').addEventListener('input', function() {
+        document.getElementById('price-min').value = this.value;
+    });
+    document.getElementById('price-range-max').addEventListener('input', function() {
+        document.getElementById('price-max').value = this.value;
+    });
+</script>
+</body>
+</html>
