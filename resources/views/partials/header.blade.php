@@ -7,12 +7,16 @@
           <img src="{{ asset('asset/img/near_me.svg') }}" alt="" width="18" height="18">
           <div class="dropdown">
             <a class="text-dark text-decoration-none dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
-              {{ $cities->first()->name ?? 'Город'}}
+              {{ request()->route('city')->name ?? 'Город' }}
             </a>
             <ul class="dropdown-menu">
-                 @foreach($cities as $city)
-                    <li><a class="dropdown-item" href="#">{{ $city->name }}</a></li>
-                @endforeach         
+                @foreach($cities as $city)
+                    <li>
+                        <a class="dropdown-item" href="{{ url($city->slug) }}">
+                            {{ $city->name }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
           </div>
         </div>
@@ -23,11 +27,11 @@
         </a>
       </div>
       <div class="col-md-6 text-md-end d-flex justify-content-md-end align-items-center gap-3 gap-md-4 flex-wrap">
-        <a href="{{ route('favourite') }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
+        <a href="{{ route('favourite', request()->route('city')->slug) }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
             <img src="{{ asset('asset/img/favorite_border.svg') }}" alt="" width="18" height="18">
             <span class="d-none d-sm-inline">Избранное</span>
         </a>
-        <a href="{{ route('profile') }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
+        <a href="{{ route('profile', request()->route('city')->slug) }}" class="text-muted text-decoration-none d-flex align-items-center gap-2">
             <img src="{{ asset('asset/img/person.svg') }}" alt="" width="18" height="18">
             <span class="d-none d-sm-inline">Личный кабинет</span>
         </a>
@@ -87,7 +91,7 @@
                     style="height: 56px; background: #00bfa5; border: none; box-shadow: 0 8px 20px rgba(0,191,165,0.45)">
               ЗАКАЗАТЬ ЗВОНОК
             </button>
-          <a href="{{ route('cart') }}" class="btn-icon-round position-relative">
+          <a href="{{ route('cart', request()->route('city')->slug) }}" class="btn-icon-round position-relative">
             <img src="{{ asset('asset/img/shopping_cart.svg') }}" alt="" width="22">
           </a>
         </div>
@@ -97,19 +101,67 @@
 </header>
 
 <!-- Меню категорий -->
-<nav class="nav-category py-3">
-  <div class="container">
-    <ul class="nav-category-list">
-      @forelse($catalogs as $catalog)
-        <li>
-          <a class="nav-category-link" href="{{ route('catalog.show', $catalog->slug) }}">
-            <img src="{{ asset('asset/img/' . $catalog->icon) }}" alt="{{ $catalog->name }}" class="me-2">
-            {{ $catalog->name }}
-          </a>
-        </li>
-      @empty
-        <li>Категории ещё не добавлены</li>
-      @endforelse
-    </ul>
+<nav class="nav-category py-3 position-relative">
+  <div class="container position-relative">
+
+    <!-- Кнопка влево -->
+    <button type="button"
+            class="btn btn-sm btn-light position-absolute top-50 start-0 translate-middle-y shadow-sm"
+            id="scroll-left"
+            style="z-index: 10;">
+      &#10094;
+    </button>
+
+    <!-- Контейнер прокрутки -->
+    <div id="catalog-scroll" class="catalog-scroll">
+      <ul class="nav-category-list">
+        @forelse($catalogs as $catalog)
+          <li>
+            <a class="nav-category-link d-flex align-items-center"
+               href="{{ route('catalog.show', [
+                   'city' => request()->route('city')->slug,
+                   'slug' => $catalog->slug
+               ]) }}">
+              <img src="{{ asset('asset/img/' . $catalog->icon) }}"
+                   alt="{{ $catalog->name }}" class="me-2" width="24" height="24">
+              {{ $catalog->name }}
+            </a>
+          </li>
+        @empty
+          <li>Категории ещё не добавлены</li>
+        @endforelse
+      </ul>
+    </div>
+
+    <!-- Кнопка вправо -->
+    <button type="button"
+            class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y shadow-sm"
+            id="scroll-right"
+            style="z-index: 10;">
+      &#10095;
+    </button>
+
   </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const scrollContainer = document.getElementById('catalog-scroll');
+    const btnLeft = document.getElementById('scroll-left');
+    const btnRight = document.getElementById('scroll-right');
+
+    if (!scrollContainer || !btnLeft || !btnRight) return;
+
+    // Получаем первый элемент списка для расчёта шага
+    const firstItem = scrollContainer.querySelector('.nav-category-list li');
+    const step = firstItem ? firstItem.getBoundingClientRect().width + 16 : 300; // + gap
+
+    btnLeft.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: step, behavior: 'smooth' });
+    });
+});
+</script>
