@@ -20,16 +20,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect('/');
         }
 
-        return back()->withErrors([
-            'email' => 'Неверные данные для входа.',
-        ])->onlyInput('email');
+        return back()->withErrors(['email' => 'Неверные данные.']);
     }
 
     public function logout(Request $request)
